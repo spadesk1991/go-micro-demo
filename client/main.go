@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/spadesk1991/go-micro-demo/lib"
 
@@ -54,7 +55,10 @@ func main() {
 	})
 
 	router.GET("/v2/news", func(ctx *gin.Context) {
-		lib.Call2(s, ctx, 20)
+		count, _ := ctx.GetQuery("count")
+		size, _ := strconv.Atoi(count)
+		res := lib.Call2(s, ctx, size)
+		ctx.JSON(http.StatusOK, gin.H{"data": res.GetData()})
 	})
 
 	srv := web.NewService(

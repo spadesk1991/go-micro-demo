@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	reg := consul.NewRegistry(registry.Addrs("192.168.1.101:8500"))
+	reg := consul.NewRegistry(registry.Addrs("localhost:8500"))
 	//reg:= consul
 	ginRouter := gin.Default()
 	ginRouter.GET("/user", func(context *gin.Context) {

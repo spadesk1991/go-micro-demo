@@ -5,10 +5,11 @@ go 1.13
 require (
 	github.com/coreos/etcd v3.3.22+incompatible // indirect
 	github.com/envoyproxy/go-control-plane v0.9.4 // indirect
+	github.com/favadi/protoc-go-inject-tag v1.0.0 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-log/log v0.2.0 // indirect
 	github.com/gogo/protobuf v1.3.1 // indirect
-	github.com/golang/protobuf v1.4.2 // indirect
+	github.com/golang/protobuf v1.4.2
 	github.com/lucas-clemente/quic-go v0.16.0 // indirect
 	github.com/micro/go-micro v1.18.0
 	github.com/micro/go-micro/v2 v2.8.0
@@ -23,7 +24,6 @@ require (
 	golang.org/x/sys v0.0.0-20200602100848-8d3cce7afc34 // indirect
 	golang.org/x/tools v0.0.0-20200601175630-2caf76543d99 // indirect
 	honnef.co/go/tools v0.0.1-2020.1.4 // indirect
-
 )
 
 replace google.golang.org/grpc => google.golang.org/grpc v1.26.0

@@ -3,8 +3,10 @@ syntax = "proto3";
 package models.protos;
 
 message ProdModel {
-    int32 ProdID = 1;
-    string ProdName = 2;
+    // @inject_tag: json:"id"
+    int32 ID = 1;
+    // @inject_tag: json:"name"
+    string Name = 2;
 }
 
 message ProdsRequest {

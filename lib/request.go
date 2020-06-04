@@ -8,6 +8,8 @@ import (
 	"log"
 	"net/http"
 
+	models_protos "github.com/spadesk1991/go-micro-demo/server/models"
+
 	"github.com/micro/go-micro/client"
 
 	"github.com/micro/go-micro/client/selector"
@@ -29,17 +31,17 @@ func Call(method, url, params string, body io.Reader) (buff []byte, err error) {
 	return
 }
 
-func Call2(s selector.Selector, ctx context.Context, size int) {
+func Call2(s selector.Selector, ctx context.Context, size int) (res models_protos.ProdListResponse) {
 	cli := myhttp.NewClient(
 		client.Selector(s),
 		client.ContentType("application/json"),
 	)
-	p := map[string]int{"size": size}
+	p := models_protos.ProdsRequest{Size: int32(size)}
 	req := cli.NewRequest("prodService", "/news", &p)
-	var res map[string]interface{}
 	err := cli.Call(ctx, req, &res)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(res["data"])
+	fmt.Println(res.GetData())
+	return
 }
