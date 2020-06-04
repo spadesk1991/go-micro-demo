@@ -29,12 +29,13 @@ func Call(method, url, params string, body io.Reader) (buff []byte, err error) {
 	return
 }
 
-func Call2(s selector.Selector, ctx context.Context) {
+func Call2(s selector.Selector, ctx context.Context, size int) {
 	cli := myhttp.NewClient(
 		client.Selector(s),
 		client.ContentType("application/json"),
 	)
-	req := cli.NewRequest("prodService", "/news", map[string]interface{}{})
+	p := map[string]int{"size": size}
+	req := cli.NewRequest("prodService", "/news", &p)
 	var res map[string]interface{}
 	err := cli.Call(ctx, req, &res)
 	if err != nil {

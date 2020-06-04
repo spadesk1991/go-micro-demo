@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/spadesk1991/go-micro-demo/model"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/micro/go-micro/registry"
@@ -22,9 +24,10 @@ func main() {
 		ID   int
 		Name string
 	}
-
 	ginRouter.POST("/news", func(context *gin.Context) {
-		count := 10
+		var p model.ProdParams
+		context.ShouldBind(&p)
+		count := p.Size
 		data := make([]ProdModel, count)
 		for i := 0; i < count; i++ {
 			data[i] = ProdModel{1000 + i, "name_" + strconv.Itoa(1000+i)}

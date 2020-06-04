@@ -45,7 +45,7 @@ func main() {
 			log.Fatal(err)
 		}
 		r := new(res)
-		buff, err := lib.Call("GET", "http://"+node.Address+"/news", "", nil)
+		buff, err := lib.Call("POST", "http://"+node.Address+"/news", "", nil)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -54,12 +54,12 @@ func main() {
 	})
 
 	router.GET("/v2/news", func(ctx *gin.Context) {
-		lib.Call2(s, ctx)
+		lib.Call2(s, ctx, 20)
 	})
 
 	srv := web.NewService(
 		web.Name("web_service"),
-		web.Address(":8002"),
+		web.Address(":8003"),
 		web.Registry(reg),
 		web.Handler(router),
 	)
